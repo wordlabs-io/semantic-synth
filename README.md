@@ -34,3 +34,32 @@ This package was built to perform research on how different chunking strategies 
 
 > WARNING: Please note that this is an alpha release and is only suitable for testing, not for production
 
+### Installation
+```python
+pip install semantic-synth
+```
+
+### Code 
+```python
+from semantic_synth.datagen import KeywordDatasetGenerator
+
+text = """
+<Insert text here>
+"""
+
+gen = KeywordDatasetGenerator()
+
+#To get single text response
+print(gen.generate(content = text))
+
+#For dataset as dataframe
+
+content = [
+  '<Insert text1 here>',
+  '<Insert text2 here>,
+  '<Insert text3 here>'
+]
+
+print(gen.generate_as_df(content = content))
+
+```
