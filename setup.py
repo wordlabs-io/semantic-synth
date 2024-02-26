@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-VERSION = '0.0.1' 
+VERSION = '0.0.3' 
 DESCRIPTION = 'Synthetic dataset generator for testing semantic search quality'
 LONG_DESCRIPTION = long_description
 
@@ -16,7 +16,7 @@ setup(
         description=DESCRIPTION,
         long_description=LONG_DESCRIPTION,
         long_description_content_type = 'text/markdown',
-        url = "https://github.com/wordlabs-io/context_aware_chunker",
+        url = "https://github.com/wordlabs-io/semantic-synth",
         packages=find_packages(where='src'),
         package_dir={'': 'src'},
         install_requires=[
