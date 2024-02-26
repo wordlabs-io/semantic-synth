@@ -2,6 +2,7 @@ import pysbd
 
 import yake
 import pandas as pd
+import spacy
 
 import abc
 from abc import ABC, abstractmethod
@@ -53,10 +54,21 @@ class KeywordDatasetGenerator(DatasetGenerator):
         self.dedup_threshold = dedup_threshold
         self.language = language
 
+    def filter_ents(self, keywords):
+        NER = spacy.load("en_core_web_sm")
+        
+        filtered = []
+        for phrase in keywords:
+            ents = NER(phrase)
+            if len(ents.ents) > 0:
+                filtered.append(phrase)
+        return filtered
+
     def generate(
         self,
         content: str = None,
         num_results: int = 5,
+        filter_for_entities: bool = True
     ):
         custom_kw_extractor = yake.KeywordExtractor(
             lan=self.language,
@@ -70,6 +82,9 @@ class KeywordDatasetGenerator(DatasetGenerator):
             keyword[0] for keyword in keywords if (len(keyword[0].split(" ")) <= self.max_ngram_size) and (len(keyword[0].split(" ")) >= self.min_ngram_size)
         ]
 
+        if filter_for_entities:
+            keywords = self.filter_ents(keywords)
+            
         return keywords
 
 class SentenceDatasetGenerator(DatasetGenerator):
