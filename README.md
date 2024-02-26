@@ -11,7 +11,7 @@ Having reviewed multiple different platforms that work on semantic search correc
 This is an expensive operation owing to the multiple LLM calls, not to mention would not be conducive for very large scale data testing or continous monitoring. 
 
 ## How does this package work?
-Given any text, we generate keywords using YAKE library. This effectively makes the test self supervised, without need for expensive 
+Given any text, we generate keywords using YAKE library. This effectively makes the test self supervised, without need for expensive LLM calls for synthetic generation
 
 ### Philosophy
 Semantic search mainly works on finding different latent meanings between queries and vectors in a search index. Therefore, it only makes sense that it should be highly effective at finding passages that contain key phrases in a document
